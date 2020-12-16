@@ -1,0 +1,56 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+</style>
+
+
+<br>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card card-body">
+            <h3 style="text-align: center">Account Settings</h3>
+            <hr>
+            <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
+            <hr>
+            <h5 style="text-align: center">Create Plan</h5>
+            <a class="btn btn-info" href="/"> Create</a>
+            <hr>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+        <div class="card card-body">
+            <h5>Saved Information</h5>
+            <hr>
+            <p>Nome: {{request.user.customer.name}}</p>
+            <p>Email: {{request.user.customer.email}}</p>
+            <p>Phone: {{request.user.customer.phone}}</p>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card card-body">
+            <h5>Edit Profile Information</h5>
+            <hr>
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+            <input class="btn btn-info" type="submit" name="Update Information">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

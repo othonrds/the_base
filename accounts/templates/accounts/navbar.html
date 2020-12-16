@@ -1,0 +1,52 @@
+{% load static %}
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #ffffff;
+    margin-right: 20px;
+  }
+</style>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">LOGO</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+      
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'profile' %}">My Account</a>
+        </li>
+        {% endif %}
+
+        {% if request.user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="/">Dashboard</a>
+        </li>
+        {% endif %} 
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Abpay Pro</a>
+        </li>
+      </ul>
+    </div>
+
+    {% if request.user.is_authenticated %}
+
+    <span class="hello-msg">Hello, {{request.user}} </span>
+    <span><a class="hello-msg" href="{% url 'logout' %}">Logout</a></span>
+    {% else %}
+    <span><a class="hello-msg" href="{% url 'register' %}">Register</a></span>
+    <span><a class="hello-msg" href="{% url 'login' %}">Login</a></span>
+    
+    {% endif %} 
+
+  </nav>
