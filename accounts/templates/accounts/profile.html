@@ -23,7 +23,7 @@
             <img class="profile-pic" src="{{request.user.customer.profile_pic.url}}" >
             <hr>
             <h5 style="text-align: center">Create Plan</h5>
-            <a class="btn btn-info" href="{url 'create-plan'}"> Create</a>
+            <a class="btn btn-info" href="{% url 'create-plan' %}"> Create</a>
             <hr>
         </div>
     </div>
