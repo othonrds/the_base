@@ -82,7 +82,7 @@ def logoutPage(request):
 
 
 #@login_required(login_url='login')
-@unauthenticated_user      
+@authenticated_user      
 def create_plan(request):
     form = PlanForm()
     if request.method == 'POST':
@@ -92,4 +92,4 @@ def create_plan(request):
             return redirect('/')
 
     context = {'form':form}
-    return render(request, 'accounts/crud/plan_form.html', context)
+    return render(request, 'accounts/plan_form.html', context)
