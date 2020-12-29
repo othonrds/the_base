@@ -27,7 +27,6 @@ def profile(request):
     context = {'form' : form}
     return render(request, 'accounts/profile.html', context)
     
-
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -57,7 +56,7 @@ def registerPage(request):
     context = {'form':form}
     return render(request, 'accounts/register.html', context)
 
-@unauthenticated_user
+
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -79,4 +78,18 @@ def logoutPage(request):
     return redirect('home')
 
 #@allowed_users(allowed_roles=['admin', 'staff'...]
-#def dashboardPage(request):    
+#def dashboardPage(request):  
+
+
+#@login_required(login_url='login')
+@unauthenticated_user      
+def create_plan(request):
+    form = PlanForm()
+    if request.method == 'POST':
+        form = PlanForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form':form}
+    return render(request, 'accounts/crud/plan_form.html', context)
