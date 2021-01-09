@@ -15,8 +15,8 @@ class CustomerForm(ModelForm):
         fields = '__all__'
         exclude = ['user']   
 
-class Planform(ModelForm):
+class PlanForm(ModelForm):
     class Meta:
         model = Plan
         fields = '__all__'
-        exclude = ['user']            
+        exclude = ['customer']            

@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from .models import *
-from .forms import *
+from .forms import  CustomerForm , PlanForm
 from .decorators import unauthenticated_user, authenticated_user #, allowed_users
 
 # Create your views here.
@@ -17,6 +17,8 @@ def home(request):
 @authenticated_user
 def profile(request):
     customer = request.user.customer
+    plans = customer.plan_set.all()
+    plans_total = plans.count()
     form = CustomerForm(instance=customer)
 
     if request.method == 'POST':
@@ -24,7 +26,7 @@ def profile(request):
         if form.is_valid():
             form.save()
 
-    context = {'form' : form}
+    context = {'form' : form, 'plans' : plans,'plans_total' : plans_total }
     return render(request, 'accounts/profile.html', context)
     
 @unauthenticated_user
@@ -82,14 +84,17 @@ def logoutPage(request):
 
 
 #@login_required(login_url='login')
-@authenticated_user      
+   
 def create_plan(request):
+    customer = request.user.customer
     form = PlanForm()
     if request.method == 'POST':
-        form = PlanForm(request.POST)
+        form = PlanForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
             return redirect('/')
 
-    context = {'form':form}
+    context = {'form':form }
     return render(request, 'accounts/plan_form.html', context)
+
+ 

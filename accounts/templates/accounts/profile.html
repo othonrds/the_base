@@ -36,6 +36,8 @@
             <p>Nome: {{request.user.customer.name}}</p>
             <p>Email: {{request.user.customer.email}}</p>
             <p>Phone: {{request.user.customer.phone}}</p>
+            <hr>
+            <p>Total plans created: {{plans_total}} </p>
         </div>
     </div>
 
@@ -51,6 +53,34 @@
         </div>
     </div>
 
+</div>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Plan</th>
+					<th>Price</th>
+					<th>Recurrence</th>
+					<th>Edit</th>
+					<th>Delete</th>
+                </tr>
+                
+                {% for plan in plans %}
+                <tr>
+                    <td>{{plan.name}}</td>
+                    <td>{{plan.price}}</td>
+                    <td>{{plan.recurrence}}</td>
+					<td><a class="btn btn-sm btn-info" href="/">Edit</a></td>
+					<td><a class="btn btn-sm btn-danger" href="/">Delete</a></td>
+                </tr>
+
+                {% endfor %}
+
+			</table>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

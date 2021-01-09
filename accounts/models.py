@@ -20,13 +20,17 @@ class Plan(models.Model):
                 ('Weekly', 'Weekly'),
                 ('Monthly', 'Monthly'),
                 ('Anually','Anually'),
-                )
+    )
 
+    #user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
-    name = models.CharField(max_length=200, null=True)
+    tipo = models.CharField(max_length=200, null=True)
     recurrence = models.CharField(max_length=200, null=True, choices=RECURRENCE)
     price = models.FloatField(null=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name
+
+
+
