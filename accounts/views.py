@@ -80,3 +80,14 @@ def logoutPage(request):
 
 #@allowed_users(allowed_roles=['admin', 'staff'...]
 #def dashboardPage(request):    
+
+def create_product(request):
+    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+    context = {'form':form}
+    return render(request, 'accounts/product_form.html', context)

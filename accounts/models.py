@@ -14,7 +14,6 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
 
-
 class Plan(models.Model):
     RECURRENCE = (
                 ('Weekly', 'Weekly'),
@@ -30,3 +29,22 @@ class Plan(models.Model):
 
     def __str__(self):
         return self.name
+
+class Product(models.Model):
+    CATEGORY = (
+        ('Eng Elétrica', 'Eng Elétrica'),
+        ('Eng Mecânica','Eng Mecânica'),
+        ('Eng Civil','Eng Civil'),
+    )
+
+    customer = models.ForeignKey(Customer, null=True, on_delete= models.SET_NULL)
+    #employer = models.ForeignKey(Employer, null=True, on_delete=models.SET_NULL)
+    name = models.CharField(max_length=200, null=True)
+    price = models.FloatField(null=True)
+    category = models.CharField(max_length=200, null=True, choices=CATEGORY)
+    description = models.CharField(max_length=200, null=True, blank=True)
+    date_created = models.DateTimeField(auto_now_add=True, null=True)
+    #tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.name        
