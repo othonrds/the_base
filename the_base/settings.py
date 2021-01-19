@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +77,12 @@ WSGI_APPLICATION = 'the_base.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER': 'othonrds',
+        'PASSWORD': '88116566othon',
+        'HOST': 'database-1.ceyrv9od3jjl.sa-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -127,3 +132,22 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+#SMTP Configuration
+
+
+
+
+
+
+
+
+
+AWS_ACCESS_KEY_ID = 'AKIAZ2RI6FYJYF54CAJB'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'othonrds-abeia-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' #look to bucket first!
