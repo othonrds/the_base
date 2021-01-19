@@ -13,6 +13,10 @@ django-storages = "*"
 boto3 = "*"
 gunicorn = "*"
 whitenoise = "*"
+<<<<<<< HEAD
+=======
+dj-database-url = "*"
+>>>>>>> b614c564f712f3bfd32b3ef035b7605a40a43864
 
 [requires]
 python_version = "3.8"

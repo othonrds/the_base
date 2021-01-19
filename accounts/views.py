@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from .models import *
-from .forms import *
+from .forms import  CustomerForm , PlanForm
 from .decorators import unauthenticated_user, authenticated_user #, allowed_users
 
 # Create your views here.
@@ -17,6 +17,8 @@ def home(request):
 @authenticated_user
 def profile(request):
     customer = request.user.customer
+    plans = customer.plan_set.all()
+    plans_total = plans.count()
     form = CustomerForm(instance=customer)
 
     if request.method == 'POST':
@@ -24,10 +26,9 @@ def profile(request):
         if form.is_valid():
             form.save()
 
-    context = {'form' : form}
+    context = {'form' : form, 'plans' : plans,'plans_total' : plans_total }
     return render(request, 'accounts/profile.html', context)
     
-
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -57,7 +58,7 @@ def registerPage(request):
     context = {'form':form}
     return render(request, 'accounts/register.html', context)
 
-@unauthenticated_user
+
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -79,4 +80,35 @@ def logoutPage(request):
     return redirect('home')
 
 #@allowed_users(allowed_roles=['admin', 'staff'...]
+<<<<<<< HEAD
 #def dashboardPage(request):    
+
+def create_product(request):
+    form = ProductForm()
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+=======
+#def dashboardPage(request):  
+
+
+#@login_required(login_url='login')
+   
+def create_plan(request):
+    customer = request.user.customer
+    form = PlanForm()
+    if request.method == 'POST':
+        form = PlanForm(request.POST, instance=customer)
+>>>>>>> 76ef6bd1a50387b6846e6d4fe1a14682d20e8a78
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+
+<<<<<<< HEAD
+    context = {'form':form}
+    return render(request, 'accounts/product_form.html', context)
+=======
+    context = {'form':form }
+    return render(request, 'accounts/plan_form.html', context)
+
+ 
+>>>>>>> 76ef6bd1a50387b6846e6d4fe1a14682d20e8a78
