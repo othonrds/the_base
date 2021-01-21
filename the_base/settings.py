@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '89pr!nge%(&sxu_(duf+m3owjs^&nhwjwd=v0(97l3lj37t$m8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['base-abeia.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -37,11 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'accounts.apps.AccountsConfig',
+    
+    'storages',
+    
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -74,10 +82,21 @@ WSGI_APPLICATION = 'the_base.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'demo_1',
+        'USER': 'othonrds',
+        'PASSWORD': '88116566othon',
+        'HOST': 'database-1.ceyrv9od3jjl.sa-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -127,3 +146,16 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #-------------------->>> Heroku config
+
+##-------------------------------------------------------->>>
+
+AWS_ACCESS_KEY_ID = 'AKIAZ2RI6FYJYF54CAJB'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'othonrds-abeia-bucket'
+
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL = None
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage' #look to bucket first!
