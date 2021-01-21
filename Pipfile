@@ -9,10 +9,21 @@ verify_ssl = true
 django = "==3.0"
 pillow = "*"
 psycopg2 = "*"
+<<<<<<< HEAD
 boto3 = "*"
 django-storages = "*"
 gunicorn = "*"
 whitenoise = "*"
+=======
+django-storages = "*"
+boto3 = "*"
+gunicorn = "*"
+whitenoise = "*"
+<<<<<<< HEAD
+=======
+dj-database-url = "*"
+>>>>>>> b614c564f712f3bfd32b3ef035b7605a40a43864
+>>>>>>> a4a102a5035c0ff153b213456d6e66f75fa84cee
 
 [requires]
 python_version = "3.8"

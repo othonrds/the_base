@@ -39,10 +39,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'accounts.apps.AccountsConfig',
+<<<<<<< HEAD
     
     'storages',
     
 
+=======
+    'whitenoise.runserver_nostatic',
+    'storages',
+>>>>>>> a4a102a5035c0ff153b213456d6e66f75fa84cee
 ]
 
 MIDDLEWARE = [
@@ -51,6 +56,9 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -139,6 +147,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
@@ -147,9 +157,21 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #-------------------->>> Heroku config
 
 ##-------------------------------------------------------->>>
+=======
+#SMTP Configuration
+
+
+
+
+
+
+
+
+>>>>>>> a4a102a5035c0ff153b213456d6e66f75fa84cee
 
 AWS_ACCESS_KEY_ID = 'AKIAZ2RI6FYJYF54CAJB'
 AWS_SECRET_ACCESS_KEY = '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'
