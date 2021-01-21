@@ -25,7 +25,7 @@ SECRET_KEY = '89pr!nge%(&sxu_(duf+m3owjs^&nhwjwd=v0(97l3lj37t$m8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['base-abeia.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['base-abeia2.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
